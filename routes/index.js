@@ -9,11 +9,7 @@ const ANDROID_PKG = process.env.ANDROID_PKG || 'com.mathysfornasier.kura';
 const IOS_APP_ID = process.env.IOS_APP_ID || '0000000000'; // TODO: replace
 const WEB_FALLBACK = process.env.WEB_FALLBACK || 'https://kura.example.com';
 
-// Health-check root
-router.get('/', (req, res) => {
-  res.send('OK - use /deeplink?path=/rituel/42&data=abc');
-});
-
+ 
 
 router.get("/deeplink", function (req, res, next) {
 
@@ -27,11 +23,11 @@ router.get("/deeplink", function (req, res, next) {
     url = 'android';
 
   } else if (/Windows|Macintosh|Linux/i.test(userAgent)) {
-    url = 'https://www.owlygolf.fr';
+    url = 'https://kura-rituals.com';
     res.redirect(url);
 
   } else {
-    url = 'https://www.owlygolf.fr';
+    url = 'https://kura-rituals.com';
   }
 
   res.render(url)
