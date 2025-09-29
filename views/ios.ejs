@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="3;url=https://play.google.com/store/apps/details?id=com.example.myapp"> -->
+    <title>Redirection</title>
+</head>
+<body>
+    <h1>Redirection...</h1>
+
+    <script>
+    // ✅ IMPORTANT : le schéma doit être ASCII (sans accent) et identique à celui déclaré dans Info.plist (CFBundleURLSchemes)
+    // Remplace l'ID App Store ci-dessous par le tien si besoin.
+    (function () {
+      const DEEP_LINK = "kura://open"; // ex: kura://open (pas "kūra://")
+      const IOS_STORE = "https://apps.apple.com/fr/app/k%C5%ABra/id6752422831"; // <-- mets l'URL App Store officielle
+
+      let didHide = false;
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) didHide = true; // l'app a pris le focus
+      });
+
+      // Tente d'ouvrir l'app immédiatement
+      window.location.href = DEEP_LINK;
+
+      // Fallback vers l'App Store si rien ne s'est passé
+      setTimeout(function () {
+        if (!didHide) {
+          window.location.href = IOS_STORE;
+        }
+      }, 1200);
+    })();
+    </script>
+  </body>
+</html>
